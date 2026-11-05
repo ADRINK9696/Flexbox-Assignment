@@ -1,0 +1,79 @@
+import React from 'react';
+import { View, Text, StyleSheet, SafeAreaView, StatusBar, Platform } from 'react-native';
+
+const Child = () => (
+  <View style={styles.child}>
+    <Text style={styles.childText}>Child</Text>
+  </View>
+);
+
+export default function App() {
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* Row container */}
+      <View style={styles.section}>
+        <Text style={styles.title}>Row</Text>
+        <View style={styles.row}>
+          <Child />
+          <Child />
+          <Child />
+        </View>
+      </View>
+
+      {/* Column container */}
+      <View style={styles.section}>
+        <Text style={styles.title}>Column</Text>
+        <View style={styles.column}>
+          <Child />
+          <Child />
+          <Child />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // Keeps the layout below the status bar on Android (iOS is handled by SafeAreaView)
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  },
+  section: {
+    flex: 1,
+    margin: 10,
+    padding: 10,
+    backgroundColor: '#ddf0cc',
+    borderWidth: 1,
+    borderColor: '#9bc77b',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row',        // children go left to right
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  column: {
+    flex: 1,
+    flexDirection: 'column',     // children go top to bottom
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  child: {
+    width: 90,
+    height: 50,
+    backgroundColor: '#c3e6a1',
+    borderWidth: 1,
+    borderColor: '#7aa75a',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  childText: {
+    fontSize: 18,
+  },
+});
